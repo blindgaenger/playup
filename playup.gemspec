@@ -5,20 +5,17 @@ require "playup/version"
 Gem::Specification.new do |s|
   s.name        = "playup"
   s.version     = Playup::VERSION
-  s.authors     = ["blindgaenger"]
+  s.authors     = ["Bernd Jünger"]
   s.email       = ["blindgaenger@gmail.com"]
-  s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
-
-  s.rubyforge_project = "playup"
+  s.homepage    = "http://blindgaenger.net"
+  s.summary     = %q{Setup for playgrounds}
+  s.description = %q{Some templates to setup environments for playing around}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
-  # specify any dependencies here; for example:
-  # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
+  s.add_development_dependency "rspec"
+  s.add_runtime_dependency "thor"
 end
