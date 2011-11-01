@@ -18,24 +18,47 @@ module Playup
       end
     end
 
-    describe '#playground?' do
-      it 'returns true if the playground exists' do
-        @cli.should_receive(:find_in_source_paths).with('solid').and_return(nil)
+    describe '#find_playground' do
+      context 'playground exists' do
+        it 'returns the full path' do
+          @cli.should_receive(:find_in_source_paths).with('solid').and_return('/playground/solid')
 
-        @cli.playground?('solid').should == true
+          @cli.find_playground('solid').should == '/playground/solid'
+        end
       end
 
-      it 'returns false if the playground does not exist' do
-        @cli.should_receive(:find_in_source_paths).with('ghost').and_raise(RuntimeError)
+      context 'playground is unknown' do
+        it 'returns nil' do
+          @cli.should_receive(:find_in_source_paths).with('ghost').and_raise(RuntimeError)
 
-        @cli.playground?('ghost').should == false
+          @cli.find_playground('ghost').should == nil
+        end
+      end
+    end
+
+    describe '#load_config' do
+      context 'config does not exist' do
+        it 'does nothing' do
+          File.should_receive(:exist?).with('/playground/sinatra/config.rb').and_return(false)
+
+          @cli.load_config '/playground/sinatra'
+        end
+      end
+
+      it 'loads the file and extends the contained module' do
+        config_file = '/playground/sinatra/config.rb'
+        File.should_receive(:exist?).with(config_file).and_return(true)
+        @cli.should_receive(:load).with(config_file)
+
+        # TODO: extend Config
+        @cli.load_config '/playground/sinatra'
       end
     end
 
     describe '#setup' do
       context 'playground type is unknown' do
         it 'dies without screaming' do
-          @cli.should_receive(:playground?).and_return(false)
+          @cli.should_receive(:find_playground).and_return(nil)
           @cli.should_receive(:say_status).with(:error, 'can not find playground ghost', :red)
 
           @cli.setup 'ghost', 'app'
@@ -43,8 +66,8 @@ module Playup
       end
 
       it 'sets up a playground' do
-        @cli.should_receive(:playground?).and_return(true)
-        @cli.should_receive(:directory).with('sinatra/template', File.expand_path('app'))
+        @cli.should_receive(:find_playground).and_return('/playground/sinatra')
+        @cli.should_receive(:directory).with('/playground/sinatra/template', File.expand_path('app'))
 
         @cli.setup 'sinatra', 'app'
       end
