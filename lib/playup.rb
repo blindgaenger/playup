@@ -1,2 +1,3 @@
-require "playup/version"
-require "playup/cli"
+require 'thor'
+require 'playup/version'
+require 'playup/cli'

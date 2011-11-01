@@ -4,7 +4,7 @@ module Playup
   describe CLI do
 
     it '#foo' do
-      CLI.foo.should == 'bar'
+      CLI.new.foo.should == 'bar'
     end
 
   end

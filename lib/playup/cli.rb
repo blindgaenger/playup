@@ -1,9 +1,10 @@
 module Playup
-  class CLI
-    class << self
-      def foo
-        'bar'
-      end
+  class CLI < Thor
+
+    desc 'foo', 'foo'
+    def foo
+      'bar'
     end
+
   end
 end
