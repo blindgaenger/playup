@@ -15,18 +15,18 @@ module Playup
       rescue
         false
       end
-
-      def die(message)
-        say_status :error, message, :red
-        exit(-1)
-      end
     end
 
-    desc 'setup TYPE', 'setup a playground'
-    def setup(type)
-      die "can not find playground #{type}" unless playground?(type)
+    desc 'setup TYPE NAME', 'setup a playground'
+    def setup(type, name)
+      unless playground?(type)
+        say_status :error, "can not find playground #{type}", :red
+        return
+      end
 
-      type
+      source_dir = File.join(type, 'template')
+      target_dir = File.expand_path(name)
+      directory source_dir, target_dir
     end
 
   end

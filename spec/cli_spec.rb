@@ -32,30 +32,21 @@ module Playup
       end
     end
 
-    describe '#die' do
-      it 'prints an error message and exits' do
-        @cli.should_receive(:say_status).with(:error, 'nyan', :red)
-        @cli.should_receive(:exit).with(-1)
-
-        @cli.die 'nyan'
-      end
-    end
-
     describe '#setup' do
       context 'playground type is unknown' do
         it 'dies without screaming' do
-          @cli.should_receive(:die).with("can not find playground ghost")
+          @cli.should_receive(:playground?).and_return(false)
+          @cli.should_receive(:say_status).with(:error, 'can not find playground ghost', :red)
 
-          @cli.setup 'ghost'
+          @cli.setup 'ghost', 'app'
         end
       end
 
-      context 'playground type exists' do
-        it 'sets up a playground' do
-          @cli.should_receive(:playground?).and_return(true)
+      it 'sets up a playground' do
+        @cli.should_receive(:playground?).and_return(true)
+        @cli.should_receive(:directory).with('sinatra/template', File.expand_path('app'))
 
-          @cli.setup 'solid'
-        end
+        @cli.setup 'sinatra', 'app'
       end
     end
 
