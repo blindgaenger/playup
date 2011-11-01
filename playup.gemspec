@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email       = ["blindgaenger@gmail.com"]
   s.homepage    = "http://blindgaenger.net"
   s.summary     = %q{Setup for playgrounds}
-  s.description = %q{Some templates to setup environments for playing around}
+  s.description = %q{Use templates to setup a playground for your projects}
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
