@@ -1,5 +1,11 @@
 require "playup/version"
 
 module Playup
-  # Your code goes here...
+  class CLI
+    class << self
+      def foo
+        puts 'bar'
+      end
+    end
+  end
 end
