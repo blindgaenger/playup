@@ -1,0 +1,35 @@
+             ______
+    ________ ___  /______ ______  ______  __________
+    ___  __ \__  / _  __ `/__  / / /_  / / /___  __ \
+    __  /_/ /_  /  / /_/ / _  /_/ / / /_/ / __  /_/ /
+    _  .___/ /_/   \__,_/  _\__, /  \__,_/  _  .___/
+    /_/                    /____/           /_/
+
+# playup
+
+Use your own toys on the playground!
+
+## Usage
+
+Install `playup` as a gem:
+
+    gem install playup
+
+Try the `example` playground and name it `my_app`:
+
+    playup example my_app
+
+This will create your `example` playground in the `my_app` subdir.
+
+## Playground
+
+A playground is your own project/file/whatever template.
+
+All your playgrounds are stored in `.playup/playgrounds`.
+
+TODO: I'll need to go to bed now. Sorry!
+
+## Contact
+
+You can contact me via mail at blindgaenger at gmail dot com, or leave me a
+message on my [Github profile](http://github.com/blindgaenger).
