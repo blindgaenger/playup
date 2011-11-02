@@ -3,4 +3,13 @@
 $LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
 require 'playup'
 
-Playup::CLI.start
+given_args = ARGV
+options = {}
+config = {:shell => Thor::Base.shell.new}
+begin
+  script = Playup::CLI.new(given_args, options, config)
+  script.invoke(:setup, given_args)
+rescue Thor::Error => e
+  config[:shell].error(e.message)
+  exit(1)
+end
