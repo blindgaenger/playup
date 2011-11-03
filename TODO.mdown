@@ -1,0 +1,14 @@
+# TODO
+- before and after hocks
+- config define methods without module
+- rename config to variable
+- task to add folder as template
+- taks to list playgrounds
+- options to --force update if already exist
+- common tasks for example git, rvm, etc.
+
+# DOIT
+
+# DONE
+
+# DONT
